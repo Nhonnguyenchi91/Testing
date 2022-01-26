@@ -17,7 +17,7 @@ public class LopHocControl : MonoBehaviour
         Button ChanDung = GameObject.Find("ChanDung").GetComponent<Button>();
         var ChanDung_sprite = Resources.Load<Sprite>("ChanDung/" + Student.ToString());
         ChanDung.image.sprite = ChanDung_sprite; 
-        Debug.Log("Thành Công");
+        Debug.Log("ThÃ nh CÃ´ng"); // NÃªn remove
     }
     public void CheckDiem()
     {
