@@ -29,11 +29,11 @@ public class LopHocControl : MonoBehaviour
     }
     public void KhoiDau_ThoiKhoaBieu()
     {
-        Button Mon1 = GameObject.Find("Mon1").GetComponent<Button>();
-        string TenMon1 = Mon1.GetComponent<Image>().sprite.name;
+        Button Mon1 = GameObject.Find("Mon1").GetComponent<Button>(); // Nên Remove
+        string TenMon1 = GameObject.Find("Mon1").GetComponent<Image>().sprite.name;
         Debug.Log(TenMon1);
-        Button Mon2 = GameObject.Find("Mon2").GetComponent<Button>();
-        string TenMon2 = Mon2.GetComponent<Image>().sprite.name;
+        Button Mon2 = GameObject.Find("Mon2").GetComponent<Button>(); // Nên Remove
+        string TenMon2 = GameObject.Find("Mon2").GetComponent<Image>().sprite.name;
         Debug.Log(TenMon2);
     }
     // Update is called once per frame
