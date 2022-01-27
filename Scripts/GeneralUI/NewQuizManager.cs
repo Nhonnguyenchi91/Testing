@@ -16,10 +16,10 @@ public class NewQuizManager : MonoBehaviour
     public GameObject Next;
     public GameObject Back;
     public GameObject Complete;
-    public GameObject A;
-    public GameObject B;
-    public GameObject C;
-    public GameObject D;
+    [SerializeField] GameObject A;
+    [SerializeField] GameObject B;
+    [SerializeField] GameObject C;
+    [SerializeField] GameObject D;
     public TextMeshProUGUI ThongBaoQuiz;
     public Image Pic;
     [SerializeField] GameObject BangCauHoi;
@@ -63,22 +63,23 @@ public class NewQuizManager : MonoBehaviour
         ThongBaoQuiz.text = "";
         StartCoroutine(LoadDangCauHoi());
     }
+    // Hàm để các script khác lấy link lời giải
     public string LayLinkLoiGiai()
-       // Hàm để các script khác lấy link lời giải
     {
         return LinkLoiGiai;
     }
+    // Hàm để các script khác lấy link câu hỏi
     public string LayLinkCauHoi()
-    // Hàm để các script khác lấy link lời giải
     {
         return LinkCauHoi;
     }
+    // Hàm để các script khác thông tin Quiz Status
     public string ThongTinQuizStatus()
     {
         return QuizStatus;
-    }    
+    }  
+    // Xử lí các câu hỏi mà người chơi không trả lời
     void xulicaccauDSKTL(int TongCauHoi,string mode)
-        // Xử lí các câu hỏi mà người chơi không trả lời
         {
         int i = 1;
         for (int j = 1; j <= TongCauHoi; j++)
@@ -116,9 +117,9 @@ public class NewQuizManager : MonoBehaviour
                 }    
             }
     }
+    // tính tổng số câu đúng, sai, không trả lời của bài kiểm tra
     public IEnumerator IE_HoanThanhQuiz()
     {
-        // tính tổng số câu đúng, sai, không trả lời của bài kiểm tra
         for (int i = 1; i <= TongCauHoi; i++)
         {
             if (CacKQNguoiChoiChon[i] == null)
@@ -144,55 +145,58 @@ public class NewQuizManager : MonoBehaviour
         QuizStatus = "FinishQuiz";
         yield return new WaitForSeconds(0.1f);
     }
+    // Hàm để các script khác lấy thông tin tổng số các dạng trong bài kiểm tra
     public int TongSoCauHoi()
-    // Tổng số các dạng trong bài kiểm tra
     {
         return TongCauHoi;
     }
+    // Hàm để các script khác lấy thông tin tổng số câu sai trong bài kiểm tra
     public int LayTTTongSoCauSai()
-    // Tổng số câu sai trong bài kiểm tra
     {
         return TongSoCauSai;
     }
+    // Hàm để các script khác lấy thông tin các kết quả người chơi chọn
     public string LayTTCacKQNguoiChoiChon(int stt)
-    // Tổng số câu sai trong bài kiểm tra
     {
         return CacKQNguoiChoiChon[stt];
     }
+    // Hàm để các script khác lấy thông tin tổng số câu đúng
     public int LayTTTongSoCauDung()
-    // Tổng số câu sai trong bài kiểm tra
     {
         return TongSoCauDung;
     }
+     // Hàm để các script khác lấy thông tin tổng số câu không trả lời
     public int LayTTTongSoCauKTL()
-    // Tổng số câu sai trong bài kiểm tra
     {
         return TongSoCauKTL;
     }
+    // Hàm để các script khác lấy thông tin các câu sai ở các dạng
     public int xemcaccausai(int stt)
     {
         return CacCauSaiOCacDang[stt];
     }
+    // Hàm để các script khác lấy thông tin các câu đúng ở các dạng
     public int xemcaccaudung(int stt)
     {
         return CacCauDungOCacDang[stt];
     }
+    // Hàm để các script khác lấy thông tin các câu không trả lời ở các dạng
     public int xemcaccauktl(int stt)
     {
         return CacCauKTLOCacDang[stt];
     }
+    // Hàm để các script khác lấy thông tin tổng số các dạng trong bài kiểm tra
     public int TongCacDang()
-    // Tổng số các dạng trong bài kiểm tra
     {
         return CacDangCauHoi.Length - 1;
     }
+    // Hàm để các script khác lấy thông tin các dạng câu hỏi
     public string TenDangCauHoi(int stt)
-    // Lấy thông tin tên các dạng câu hỏi
     {
         return CacDangCauHoi[stt];
     }
+    // Hàm để các script khác lấy thông tin dạng câu hỏi
     public string LayTTDangCuaCH(int stt)
-    //Lấy thông tin dạng của câu hỏi
     {
         return DangCauHoi[stt];
     }
@@ -204,8 +208,8 @@ public class NewQuizManager : MonoBehaviour
     {
         StartCoroutine(IE_HoanThanhQuiz());
     }    
+        // Hàm ẩn hiện bảng quản lí câu hỏi
     public void AnHienBangCauHoi()
-    // Ẩn hiện bảng quản lí câu hỏi
     {
         if (GameObject.Find("BangCauHoi").transform.position == GameObject.Find("QuízSystem").transform.position)
         {
