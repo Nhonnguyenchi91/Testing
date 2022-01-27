@@ -24,7 +24,7 @@ public class NewQuizManager : MonoBehaviour
     public Image Pic;
     [SerializeField] GameObject BangCauHoi;
     public bool ModeCauHoiNhieuLan = true;
-    public string AnswerResult;
+    [SerializeField] string AnswerResult;
     public string Quizmode;
     private int TTcauhoi;
     private int Socaudung;
@@ -220,8 +220,8 @@ public class NewQuizManager : MonoBehaviour
             GameObject.Find("BangCauHoi").transform.position = GameObject.Find("QuízSystem").transform.position;
         }
     }
-    public void DenCauHoiChiDinh()
-        // đưa đến câu hỏi được người dùng nhấn trên bảng quản lí câu hỏi
+     // đưa đến câu hỏi được người dùng nhấn trên bảng quản lí câu hỏi
+    public void DenCauHoiChiDinh()      
     {
         string cauhoichidinh = EventSystem.current.currentSelectedGameObject.name;
         TTcauhoi = int.Parse(cauhoichidinh);
@@ -230,7 +230,6 @@ public class NewQuizManager : MonoBehaviour
         StartCoroutine(GetImageFromServer(linkQuizData));
         if (CacKQNguoiChoiChon[TTcauhoi] != null)
         {
-            Debug.Log("datraloi");
             A.SetActive(false);
             B.SetActive(false);
             C.SetActive(false);
@@ -244,9 +243,9 @@ public class NewQuizManager : MonoBehaviour
             D.SetActive(true);
         }
     }
+    //Xử lí đáp án vừa được người dùng chọn
     public void CheckDapAn()
     {
-        //Xử lí đáp án vừa được người dùng chọn
         check_choice = EventSystem.current.currentSelectedGameObject.name;
         Debug.Log(check_choice);
         GameObject.Find(TTcauhoi.ToString()).GetComponent<Image>().color = new Color(0, 255, 0, 255);
