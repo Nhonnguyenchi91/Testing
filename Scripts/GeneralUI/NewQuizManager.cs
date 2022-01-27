@@ -78,7 +78,7 @@ public class NewQuizManager : MonoBehaviour
     {
         return QuizStatus;
     }  
-    // Xử lí các câu hỏi mà người chơi không trả lời
+    // Xử lí phân loại các câu mà người chơi đã chọn ( đúng, sai, không trả lời)
     void xulicaccauDSKTL(int TongCauHoi,string mode)
         {
         int i = 1;
