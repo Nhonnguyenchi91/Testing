@@ -26,20 +26,20 @@ public class NewQuizManager : MonoBehaviour
     public bool ModeCauHoiNhieuLan = true; // mode xác nhận bài kiểm tra là một câu hỏi đơn lẽ hay nhiều câu hỏi
     [SerializeField] string AnswerResult; // Kết quả của câu trả lời người chơi vừa chọn
     public string Quizmode; // Các chế dộ của bài Quiz
-    private int TTcauhoi;
-    private int Socaudung;
-    private string linkQuizData;
-    private string DapAn;
-    public int TTcauhoiCotTruyen;
-    public string[] CacKQNguoiChoiChon;
-    [SerializeField] string[] DangCauHoi;
-    [SerializeField] string[] CacDangCauHoi;
+    private int TTcauhoi; // Số thứ tự các câu hỏi
+    private int Socaudung; // Số câu đúng
+    private string linkQuizData; // link server để load bài Quiz
+    private string DapAn; // Đáp án
+    public int TTcauhoiCotTruyen; // thứ tự của câu hỏi cốt truyện
+    public string[] CacKQNguoiChoiChon; // Các kết quả người chơi chọn
+    [SerializeField] string[] DangCauHoi; // Lưu trữ
+    [SerializeField] string[] CacDangCauHoi; // Lưu trữ các dạng câu hỏi
     private float timermonitor;
-    private bool checktimer = true;
-    private bool FirstStart = false;
-    public bool QuizTutorial = false;
-    public string QuizStatus;
-    [SerializeField] int TongCauHoi;
+    private bool checktimer = true; // kiểm tra trạng thái của timer
+    private bool FirstStart = false; // kiểm tra hiện người chơi có phải lần đầu vào Quiz không
+    public bool QuizTutorial = false; // kiểm tra người chơi hiện có đang ỏ mode QuizTutorial không
+    public string QuizStatus; // trạng thái của Quiz
+    [SerializeField] int TongCauHoi; // Tổng số câu hỏi
     [SerializeField] int TongSoCauDung; // Tổng Số Câu Đúng;
     [SerializeField] int TongSoCauSai;  // Tổng Số Câu Sai;
     [SerializeField] int TongSoCauKTL; // Tổng Số Câu Không Trả Lời;
@@ -47,7 +47,7 @@ public class NewQuizManager : MonoBehaviour
     [SerializeField] int[] CacCauDungOCacDang; //Các Câu Đúng Ở Các Dạng;
     [SerializeField] int[] CacCauKTLOCacDang; //Các Câu KTL Ở Các Dạng;
     [SerializeField] string check_choice;
-    [SerializeField] string LinkLoiGiai;
+    [SerializeField] string LinkLoiGiai; //
     [SerializeField] string LinkCauHoi;
     // Start is called before the first frame update
     void Start()
