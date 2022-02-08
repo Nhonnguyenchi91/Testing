@@ -9,23 +9,23 @@ using TMPro;
 
 public class NewQuizManager : MonoBehaviour
 {
-    public GameObject QuizQuestionPanel;
-    public GameObject QuizDatabaseLoader;
-    public GameObject QuizDatabase;
-    public GameObject Timer;
-    public GameObject Next;
-    public GameObject Back;
-    public GameObject Complete;
-    [SerializeField] GameObject A;
-    [SerializeField] GameObject B;
-    [SerializeField] GameObject C;
-    [SerializeField] GameObject D;
-    public TextMeshProUGUI ThongBaoQuiz;
-    public Image Pic;
+    public GameObject QuizQuestionPanel; // Game Object chứa giao diện của Quiz question
+    public GameObject QuizDatabaseLoader; // Game Object chứa script điều khiển việc load Quiz Database từ server và xử lí chúng.
+    public GameObject QuizDatabase; // Game Object chứa script điều khiển Quiz Database
+    public GameObject Timer; // hiển thị thời gian làm bài
+    public GameObject Next; // Nút nhấn tiếp tục
+    public GameObject Back; // Nút nhấn quay lại bài kiểm tra trước
+    public GameObject Complete; // Nút nhấn hoàn thành bài kiểm tra
+    [SerializeField] GameObject A; // Nút nhấn đáp án A
+    [SerializeField] GameObject B; // Nút nhấn đáp án B
+    [SerializeField] GameObject C; // Nút nhấn đáp án C
+    [SerializeField] GameObject D; // Nút nhấn đáp án D
+    public TextMeshProUGUI ThongBaoQuiz; // Text hiển thị các thông báo của Quiz
+    public Image Pic; // Game Object hiển thị câu hỏi của Quiz
     [SerializeField] GameObject BangCauHoi;
-    public bool ModeCauHoiNhieuLan = true;
-    [SerializeField] string AnswerResult;
-    public string Quizmode;
+    public bool ModeCauHoiNhieuLan = true; // mode xác nhận bài kiểm tra là một câu hỏi đơn lẽ hay nhiều câu hỏi
+    [SerializeField] string AnswerResult; // Kết quả của câu trả lời người chơi vừa chọn
+    public string Quizmode; // Các chế dộ của bài Quiz
     private int TTcauhoi;
     private int Socaudung;
     private string linkQuizData;
