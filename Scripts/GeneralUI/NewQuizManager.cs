@@ -22,7 +22,7 @@ public class NewQuizManager : MonoBehaviour
     [SerializeField] GameObject D; // Nút nhấn đáp án D
     public TextMeshProUGUI ThongBaoQuiz; // Text hiển thị các thông báo của Quiz
     public Image Pic; // Game Object hiển thị câu hỏi của Quiz
-    [SerializeField] GameObject BangCauHoi;
+    [SerializeField] GameObject BangCauHoi; // Panel bảng câu hỏi
     public bool ModeCauHoiNhieuLan = true; // mode xác nhận bài kiểm tra là một câu hỏi đơn lẽ hay nhiều câu hỏi
     [SerializeField] string AnswerResult; // Kết quả của câu trả lời người chơi vừa chọn
     public string Quizmode; // Các chế dộ của bài Quiz
@@ -34,7 +34,7 @@ public class NewQuizManager : MonoBehaviour
     public string[] CacKQNguoiChoiChon; // Các kết quả người chơi chọn
     [SerializeField] string[] DangCauHoi; // Lưu trữ
     [SerializeField] string[] CacDangCauHoi; // Lưu trữ các dạng câu hỏi
-    private float timermonitor;
+    private float timermonitor; // giám sát timer
     private bool checktimer = true; // kiểm tra trạng thái của timer
     private bool FirstStart = false; // kiểm tra hiện người chơi có phải lần đầu vào Quiz không
     public bool QuizTutorial = false; // kiểm tra người chơi hiện có đang ỏ mode QuizTutorial không
@@ -46,9 +46,9 @@ public class NewQuizManager : MonoBehaviour
     [SerializeField] int[] CacCauSaiOCacDang; //Các Câu Sai Ở Các Dạng;
     [SerializeField] int[] CacCauDungOCacDang; //Các Câu Đúng Ở Các Dạng;
     [SerializeField] int[] CacCauKTLOCacDang; //Các Câu KTL Ở Các Dạng;
-    [SerializeField] string check_choice;
-    [SerializeField] string LinkLoiGiai; //
-    [SerializeField] string LinkCauHoi;
+    [SerializeField] string check_choice; // kiểm tra lựa chọn
+    [SerializeField] string LinkLoiGiai; // link server để load lời giải
+    [SerializeField] string LinkCauHoi; // link server để load câu hỏi
     // Start is called before the first frame update
     void Start()
     {
