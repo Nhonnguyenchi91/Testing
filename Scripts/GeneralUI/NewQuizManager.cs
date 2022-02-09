@@ -52,8 +52,8 @@ public class NewQuizManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Socaudung = 0;
-        TTcauhoi = 1;
+        Socaudung = 0; // Lúc bắt đầu điều chỉnh số câu đúng về 0
+        TTcauhoi = 1; // Lúc bắt đầu điều chỉnh thứ tự câu hỏi về 1
         TongCauHoi = 0;
         TongSoCauSai = 0;
         TTcauhoiCotTruyen = 1;
