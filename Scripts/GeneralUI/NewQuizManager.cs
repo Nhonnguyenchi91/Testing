@@ -131,34 +131,46 @@ public class NewQuizManager : MonoBehaviour
                 }    
             }
     }
-    // tính tổng số câu đúng, sai, không trả lời của bài kiểm tra
+    // IE_HoanThanhQuiz() là hàm tính tổng số câu đúng, sai, không trả lời của bài kiểm tra sau khi người chơi hoàn thành Quiz
     public IEnumerator IE_HoanThanhQuiz()
     {
+        // Tạo vòng lặp để quét tất cả các phần tử của mảng Các kết quả người chơi chọn
         for (int i = 1; i <= TongCauHoi; i++)
         {
+            //Nếu phần tử của mảng có giá trị null, nghĩa là câu này người chơi không trả lời
             if (CacKQNguoiChoiChon[i] == null)
             {
+                //sau khi phát hiện ra câu mà người chơi không trả lời thì ta tăng biến đếm TongSoCauKTL lên 1 đơn vị
                 TongSoCauKTL++;
             }
+            //Nếu phần tử của mảng có giá trị "T", nghĩa là câu này người chơi trả lời đúng
             else if (CacKQNguoiChoiChon[i] == "T")
             {
+                //sau khi phát hiện ra câu mà người chơi trả lời đúng thì ta tăng biến đếm TongSoCauDung lên 1 đơn vị
                 TongSoCauDung++;
             }
+            //Nếu phần tử của mảng có giá trị "F", nghĩa là câu này người chơi trả lời sai
             else if (CacKQNguoiChoiChon[i] == "F")
             {
+                 //sau khi phát hiện ra câu mà người chơi trả lời sai thì ta tăng biến đếm TongSoCauSai lên 1 đơn vị
                 TongSoCauSai++;
             }
         }
-        CacCauSaiOCacDang = new int[TongSoCauSai + 1];
-        CacCauDungOCacDang = new int[TongSoCauDung + 1];
-        CacCauKTLOCacDang = new int[TongSoCauKTL + 1];
+        CacCauSaiOCacDang = new int[TongSoCauSai + 1]; //Tạo mảng CacCauSaiOCacDang ( +1 để vị trí phần tử lớn nhất = TongSoCauSai)
+        CacCauDungOCacDang = new int[TongSoCauDung + 1]; //Tạo mảng CacCauDungOCacDang ( +1 để vị trí phần tử lớn nhất = TongSoCauDung)
+        CacCauKTLOCacDang = new int[TongSoCauKTL + 1]; //CacCauKTLOCacDang ( +1 để vị trí phần tử lớn nhất = TongSoCauKTL)
         // xác định các câu đúng, sai, không trả lời của bài kiểm tra
-        xulicaccauDSKTL(TongCauHoi, "KTL");
-        xulicaccauDSKTL(TongCauHoi, "Dung");
-        xulicaccauDSKTL(TongCauHoi, "Sai");
-        QuizStatus = "FinishQuiz";
-        yield return new WaitForSeconds(0.1f);
+        xulicaccauDSKTL(TongCauHoi, "KTL"); // chạy hàm xulicaccauDSKTL (hàm xử lí các câu đúng, sai, không trả lời) cho trường hợp các câu không trả lời
+        xulicaccauDSKTL(TongCauHoi, "Dung"); // chạy hàm xulicaccauDSKTL cho trường hợp các câu trả lời đúng
+        xulicaccauDSKTL(TongCauHoi, "Sai"); // chạy hàm xulicaccauDSKTL cho trường hợp các câu trả lời sai
+        QuizStatus = "FinishQuiz"; // Sau khi xử lí xong IE_HoanThanhQuiz() thì ta cập nhật QuizStatus = "FinishQuiz"
+        yield return new WaitForSeconds(0.1f); // delay 0.1 giây
     }
+    // Hàm Hoàn Thành Quiz để chạy StartCoroutine cho IE_HoanThanhQuiz()
+        public void HoanThanhQuiz()
+    {
+        StartCoroutine(IE_HoanThanhQuiz());
+    } 
     // Hàm để các script khác lấy thông tin tổng số các dạng trong bài kiểm tra
     public int TongSoCauHoi()
     {
@@ -217,30 +229,31 @@ public class NewQuizManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-    public void HoanThanhQuiz()
-    {
-        StartCoroutine(IE_HoanThanhQuiz());
-    }    
-        // Hàm ẩn hiện bảng quản lí câu hỏi
+    }   
+    // Hàm ẩn hiện bảng quản lí câu hỏi
     public void AnHienBangCauHoi()
     {
+        // Check xem vị trí của BangCauHoi có trùng với vị trí của QuízSystem không
         if (GameObject.Find("BangCauHoi").transform.position == GameObject.Find("QuízSystem").transform.position)
         {
+        // Nếu trùng thì có nghĩa là BangCauHoi đang hiện, ta thực hiện ẩn bằng cách cho BangCauHoi di chuyển đến vị trí của GiauBangCauHoi
             GameObject.Find("BangCauHoi").transform.position = GameObject.Find("GiauBangCauHoi").transform.position;
         }
+        // Check xem vị trí của BangCauHoi có trùng với vị trí của GiauBangCauHoi không
         else if(GameObject.Find("BangCauHoi").transform.position == GameObject.Find("GiauBangCauHoi").transform.position)
         {
+        // Nếu trùng thì có nghĩa là BangCauHoi đang ẩn, ta cho hiện lên bằng cách cho BangCauHoi di chuyển đến vị trí của QuízSystem
             GameObject.Find("BangCauHoi").transform.position = GameObject.Find("QuízSystem").transform.position;
         }
     }
      // đưa đến câu hỏi được người dùng nhấn trên bảng quản lí câu hỏi
     public void DenCauHoiChiDinh()      
     {
-        string cauhoichidinh = EventSystem.current.currentSelectedGameObject.name;
-        TTcauhoi = int.Parse(cauhoichidinh);
-        linkQuizData = QuizDatabaseLoader.GetComponent<NewDatabaseLoader>().DatabaseTable[TTcauhoi-1, 3];
-        DapAn = QuizDatabaseLoader.GetComponent<NewDatabaseLoader>().DatabaseTable[TTcauhoi-1, 2];
+        
+        string cauhoichidinh = EventSystem.current.currentSelectedGameObject.name; // lưu tên của câu hỏi mà người chơi vừa chọn vào biến cauhoichidinh
+        TTcauhoi = int.Parse(cauhoichidinh); //chuyển cauhoichidinh sang int và lưu giá trị vào biến TTcauhoi
+        linkQuizData = QuizDatabaseLoader.GetComponent<NewDatabaseLoader>().DatabaseTable[TTcauhoi-1, 3]; // load link QuizData từ bảng dữ liệu trong QuizDatabaseLoader
+        DapAn = QuizDatabaseLoader.GetComponent<NewDatabaseLoader>().DatabaseTable[TTcauhoi-1, 2]; // load đáp án từ bảng dữ liệu trong QuizDatabaseLoader
         StartCoroutine(GetImageFromServer(linkQuizData));
         if (CacKQNguoiChoiChon[TTcauhoi] != null)
         {
