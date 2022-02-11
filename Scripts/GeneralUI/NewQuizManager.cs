@@ -82,33 +82,47 @@ public class NewQuizManager : MonoBehaviour
     void xulicaccauDSKTL(int TongCauHoi,string mode)
         {
         int i = 1;
+        //Tạo vòng lặp để quét chi tiết tất cả các kết quả người chơi chọn
         for (int j = 1; j <= TongCauHoi; j++)
             {
+            // xét các trường hợp cần quét
                 switch(mode)
                 {
+                   // nếu trường mode cần xử lí là các kết quả để trống, không trả lời của người chơi
                     case "KTL":
                         {
+                        // Nếu các kết quả của người chơi chọn là null có nghĩa đây là câu mà người chơi không trả lời
                             if (CacKQNguoiChoiChon[j] == null)
                             {
+                            // ta lưu câu mà người chơi không trả lời này vào mảng Các Câu không trả lời ở các dạng
                                 CacCauKTLOCacDang[i] = j;
+                             // tăng i lên 1 đơn vị để lần tiếp theo lưu vào phần tử kế tiếp của mảng Các Câu không trả lời ở các dạng
                             i++;
                             }
                             break;
                         }
+                         // nếu trường mode cần xử lí là các kết quả "Đúng"
                     case "Dung":
                         {
+                        // Nếu các kết quả của người chơi chọn là "T" có nghĩa đây là câu mà người chơi đã trả lời đúng
                             if (CacKQNguoiChoiChon[j] == "T")
                             {
+                            // ta lưu câu mà người chơi trả lời đúng này vào mảng Các Câu trả lời đúng ở các dạng
                                 CacCauDungOCacDang[i] = j;
+                            // tăng i lên 1 đơn vị để lần tiếp theo lưu vào phần tử kế tiếp của mảng Các Câu trả lời đúng ở các dạng
                             i++;
                         }
                             break;
                         }
+                        // nếu trường mode cần xử lí là các kết quả "Sai"
                     case "Sai":
                         {
+                         // Nếu các kết quả của người chơi chọn là "F" có nghĩa đây là câu mà người chơi đã trả lời sai
                             if (CacKQNguoiChoiChon[j] == "F")
                             {
+                            // ta lưu câu mà người chơi trả lời đúng này vào mảng Các Câu trả lời sai ở các dạng
                                 CacCauSaiOCacDang[i] = j;
+                            // tăng i lên 1 đơn vị để lần tiếp theo lưu vào phần tử kế tiếp của mảng Các Câu trả lời sai ở các dạng
                             i++;
                         }
                             break;
