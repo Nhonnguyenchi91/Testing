@@ -54,7 +54,7 @@ public class NewQuizManager : MonoBehaviour
     {
         Socaudung = 0; // Lúc bắt đầu điều chỉnh số câu đúng về 0
         TTcauhoi = 1; // Lúc bắt đầu điều chỉnh thứ tự câu hỏi về 1
-        TongCauHoi = 0;
+        TongCauHoi = 0; // Lúc bắt đầu reset biến tổng câu hỏi về 0
         TongSoCauSai = 0;
         TTcauhoiCotTruyen = 1;
         TongSoCauDung = 0;
@@ -254,14 +254,17 @@ public class NewQuizManager : MonoBehaviour
         TTcauhoi = int.Parse(cauhoichidinh); //chuyển cauhoichidinh sang int và lưu giá trị vào biến TTcauhoi
         linkQuizData = QuizDatabaseLoader.GetComponent<NewDatabaseLoader>().DatabaseTable[TTcauhoi-1, 3]; // load link QuizData từ bảng dữ liệu trong QuizDatabaseLoader
         DapAn = QuizDatabaseLoader.GetComponent<NewDatabaseLoader>().DatabaseTable[TTcauhoi-1, 2]; // load đáp án từ bảng dữ liệu trong QuizDatabaseLoader
-        StartCoroutine(GetImageFromServer(linkQuizData));
+        StartCoroutine(GetImageFromServer(linkQuizData)); // thực hiện hàm load hình ảnh từ server
+        // check xem các kết quả người chơi chọn có bị null không
         if (CacKQNguoiChoiChon[TTcauhoi] != null)
         {
+        nếu không null, có nghĩa là câu hỏi nãy đã được trả lời, do đó ta ẩn các lựa chọn đi
             A.SetActive(false);
             B.SetActive(false);
             C.SetActive(false);
             D.SetActive(false);
         }
+        nếu null, có nghĩa là câu hỏi nãy chưa được trả lời, ta hiện các lựa chọn lên
         else if (CacKQNguoiChoiChon[TTcauhoi] == null)
         {
             A.SetActive(true);
